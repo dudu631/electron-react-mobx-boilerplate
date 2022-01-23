@@ -1,0 +1,75 @@
+{
+  "name": "electron-react-mobx-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/main.js",
+  "homepage": "./",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.21",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "electron-is-dev": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "typescript": "^4.5.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build:web": "react-scripts build",
+    "build:ts": "tsc -p electron/tsconfig.json",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn build:ts && cross-env ELECTRON_DISABLE_SECURITY_WARNINGS=true yarn electron\"",
+    "electron": "wait-on tcp:3000 && electron .",
+    "preelectron-pack": "yarn build:web && yarn build:ts",
+    "postinstall": "electron-builder install-app-deps",
+    "electron-pack": "electron-builder build -w"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^16.0.7",
+    "electron-builder": "^22.14.5",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.eagleeyemempool.app",
+    "win": {
+      "target": "portable"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "electron/**/*",
+      "src/shared/*"
+    ],
+    "extraMetadata": {
+      "main": "build/main.js"
+    },
+    "extends": null
+  }
+}
