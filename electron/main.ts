@@ -2,7 +2,7 @@ import path from "path";
 
 import { app, BrowserWindow } from "electron";
 import isDev from "electron-is-dev";
-// import { listenAndDelegateEvents } from "../electron/events";
+import { listenAndDelegateEvents } from "./events";
 
 function createWindow() {
   // Create the browser window.
@@ -14,9 +14,6 @@ function createWindow() {
       contextIsolation: false,
     },
   });
-  win.webContents.openDevTools();
-  // and load the index.html of the app.
-  // win.loadFile("index.html");
 
   win.removeMenu();
   win.loadURL(
@@ -53,6 +50,6 @@ app.on("activate", () => {
   }
 });
 
-// listenAndDelegateEvents();
+listenAndDelegateEvents();
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
