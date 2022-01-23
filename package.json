@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "main": "build/main.js",
+  "description": "Electron & React & Mobx.",
   "homepage": "./",
+  "author": {
+    "name": "Eduardo Motta Ramos"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -20,16 +24,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:web": "react-scripts start",
     "build:web": "react-scripts build",
-    "build:ts": "tsc -p electron/tsconfig.json",
-    "test": "react-scripts test",
+    "start:desktop": "wait-on tcp:3000 && electron .",
+    "build:desktop": "tsc -p electron/tsconfig.json",
+    "test:web": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn build:ts && cross-env ELECTRON_DISABLE_SECURITY_WARNINGS=true yarn electron\"",
-    "electron": "wait-on tcp:3000 && electron .",
+    "dev": "concurrently -k \"cross-env BROWSER=none yarn start:web\" \"yarn build:desktop && cross-env ELECTRON_DISABLE_SECURITY_WARNINGS=true yarn start:desktop\"",
     "preelectron-pack": "yarn build:web && yarn build:ts",
-    "postinstall": "electron-builder install-app-deps",
-    "electron-pack": "electron-builder build -w"
+    "electron-pack": "electron-builder build -w",
+    "postinstall": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": [
