@@ -1,6 +1,5 @@
 import { ipcMain, IpcMainEvent } from "electron";
-
-const { topicNames } = require("../src/shared/topics");
+import { topicNames } from "./channels";
 
 export const listenAndDelegateEvents = () => {
   ipcMain.on(topicNames.TOPIC_1, async (event: IpcMainEvent, arg) => {

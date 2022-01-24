@@ -1,8 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { topicNames } from "../shared/topics";
+
 import { RootStore } from "./RootStore";
 
 import { IpcRenderer } from "electron";
+import { topicNames } from "../../electron/events/channels";
 
 export class CommunicationStore {
   rootStore: RootStore;
